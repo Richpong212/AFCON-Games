@@ -4,7 +4,7 @@ dotenv.config();
 
 export const devapp = {
   dev: {
-    port: process.env.PORT,
+    port: process.env.SERVERPORT,
     db: {
       uri: process.env.DB_URI,
     },

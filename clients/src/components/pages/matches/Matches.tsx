@@ -3,12 +3,14 @@ import { getAllMatches } from "../../../service/match.service";
 import { NavLink } from "react-router-dom";
 
 const Matches = () => {
-  const [matches, setMatches] = useState([]);
+  const [matches, setMatches]: any = useState([]);
 
   useEffect(() => {
     const fetchedMatches = async () => {
       const res = await getAllMatches();
-      setMatches(res.data);
+      if (res) {
+        setMatches(res.data);
+      }
     };
     fetchedMatches();
   }, []);
@@ -16,7 +18,6 @@ const Matches = () => {
   return (
     <section>
       <div className="row">
-        {matches.length === 0 && <div className="col-12">No matches found</div>}
         {matches.length > 0 &&
           matches.map((match: any) => (
             <div className="col-md-6 mb-3" key={match._id}>
