@@ -5,13 +5,14 @@ import Leaderboard from "../components/pages/leaderboard/Leaderboard";
 import Admin from "../components/pages/admin/Admin";
 import Prediction from "../components/pages/prediction/Prediction";
 import Predictions from "../components/pages/allpredictions/Predictions";
-import NavAppBar from "../components/layouts/Navbar2";
+import NavBarApp from "../components/layouts/Navbar2";
+import Navbar from "../components/layouts/navbar/Navbar";
 
 const IndexRoute = () => {
   return (
     <BrowserRouter>
       <nav>
-        <NavAppBar />
+        <NavBarApp />
       </nav>
 
       <Routes>

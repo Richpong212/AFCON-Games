@@ -3,7 +3,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import SportsIcon from "@mui/icons-material/Sports";
 import { NavLink } from "react-router-dom";
 
@@ -18,7 +17,7 @@ export default function NavAppBar() {
             }}
             to={"/"}
           >
-            <SportsIcon fontSize="large" />
+            <SportsIcon fontSize="small" />
           </NavLink>
 
           <Typography
@@ -27,7 +26,7 @@ export default function NavAppBar() {
             sx={{ flexGrow: 1 }}
             style={{
               fontFamily: "cursive",
-              fontSize: "2rem",
+              fontSize: "1.5rem",
               cursor: "pointer",
             }}
           >
@@ -47,7 +46,7 @@ export default function NavAppBar() {
             style={{
               color: "white",
               textDecoration: "none",
-              fontSize: "1rem",
+              fontSize: "0.9rem",
             }}
           >
             Matches
@@ -56,7 +55,7 @@ export default function NavAppBar() {
             style={{
               color: "white",
               textDecoration: "none",
-              fontSize: "1rem",
+              fontSize: "0.9rem",
             }}
             className=" text-decoration-none  mx-1 ms-1"
             to="/leaderboard"
@@ -68,7 +67,7 @@ export default function NavAppBar() {
             style={{
               color: "white",
               textDecoration: "none",
-              fontSize: "1rem",
+              fontSize: "0.9rem",
             }}
             to="/matches/predictions"
           >
@@ -79,7 +78,7 @@ export default function NavAppBar() {
             style={{
               color: "white",
               textDecoration: "none",
-              fontSize: "1rem",
+              fontSize: "0.9rem",
             }}
             to="/admin"
           >
