@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { getAllMatches } from "../../../service/match.service";
 import { NavLink } from "react-router-dom";
+import { format } from "date-fns";
 
 const Matches = () => {
   const [matches, setMatches]: any = useState([]);
 
+  const [currentDate, setCurrentDate] = useState("");
+
   useEffect(() => {
+    // date
+    const interval = setInterval(() => {
+      const currentDate = new Date();
+      const formattedDate = format(new Date(currentDate), "yyyy-MM-dd");
+      setCurrentDate(formattedDate);
+    }, 1000);
+
     const fetchedMatches = async () => {
       const res = await getAllMatches();
       if (res) {
@@ -13,6 +23,8 @@ const Matches = () => {
       }
     };
     fetchedMatches();
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -27,7 +39,10 @@ const Matches = () => {
                   {match.homeTeam} vs {match.awayTeam}
                 </p>
                 <div>
-                  <p>Date: {match.matchDate}</p>
+                  <p>
+                    Date:
+                    {format(new Date(match.matchDate), "d MMMM yyyy")}
+                  </p>
                   <p>Venue: {match.matchVenue}</p>
                 </div>
                 <NavLink to={`/matches/prediction/${match._id}`}>
