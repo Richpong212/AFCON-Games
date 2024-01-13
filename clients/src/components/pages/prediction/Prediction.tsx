@@ -27,7 +27,7 @@ const Prediction = () => {
   }, []);
 
   // prediction time limit
-  const predictionTimeLimit = "15:00:00";
+  const predictionTimeLimit = "12:00:00";
 
   // handle input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +55,7 @@ const Prediction = () => {
     };
 
     getMatch();
-  }, [matchid]);
+  }, []);
 
   // handle submit
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -86,7 +86,7 @@ const Prediction = () => {
       <h2 className="text-2xl font-bold text-dark">Make a Prediction</h2>
       <div className="card">
         <div className="card-body">
-          {predictionTime >= predictionTimeLimit ? (
+          {match?._id === matchid && predictionTime >= predictionTimeLimit ? (
             <span
               style={{
                 position: "absolute",

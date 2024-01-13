@@ -1,51 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { getAllMatches } from "../../../service/match.service";
 import { NavLink } from "react-router-dom";
-import { format, set } from "date-fns";
+import { format } from "date-fns";
 
 const Matches = ({ btntext }: any) => {
   const [matches, setMatches]: any = useState([]);
-  const [filteredMatches, setFilteredMatches]: any = useState([]);
 
-  const [currentDate, setCurrentDate] = useState("");
+  // current date
+  const currentDate = new Date();
+
+  // filter matches by date
+  const filteredMatches = matches.filter((match: any) => {
+    const matchDate = new Date(match.matchDate);
+    const matches = matchDate.toDateString() === currentDate.toDateString();
+    return matches;
+  });
 
   useEffect(() => {
-    // date
-    const interval = setInterval(() => {
-      const currentDate = new Date();
-      const formattedDate = format(new Date(currentDate), "yyyy-MM-dd");
-      setCurrentDate(formattedDate);
-    }, 1000);
-
-    const fetchedMatches = async () => {
-      const res = await getAllMatches();
-
-      if (res) {
-        // filter matches
-        const matchesFiltered = res.data.filter((match: any) =>
-          match.matchDate.includes(currentDate)
-        );
-
-        setFilteredMatches(matchesFiltered);
-      }
-
-      if (res) {
-        setMatches(res.data);
-      }
-    };
-    fetchedMatches();
-
-    return () => clearInterval(interval);
+    getAllMatches().then((res) => {
+      setMatches(res.data);
+    });
   }, []);
 
   return (
     <section>
+      <h2 className="text-xl font-bold"> Today's Match Day</h2>
       <div className="row">
         {filteredMatches.length > 0 &&
           filteredMatches.map((match: any) => (
             <div className="col-md-6 mb-3" key={match._id}>
               <div className="bg-white p-4 rounded shadow">
-                <h2 className="text-xl font-bold">Match Day</h2>
                 <p className="text-gray-600">
                   {match.homeTeam} vs {match.awayTeam}
                 </p>
