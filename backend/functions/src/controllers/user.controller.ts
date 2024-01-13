@@ -15,7 +15,7 @@ export const createUser = async (req: Request, res: Response) => {
     }
 
     // check if the user already exists
-    const existingUser = await User.findOne({ email: user.email });
+    const existingUser = await User.findOne({ name: user.name });
 
     if (existingUser) {
       return res.status(400).json({
@@ -33,6 +33,7 @@ export const createUser = async (req: Request, res: Response) => {
       data: savedUser,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       message: "Server Error",
     });

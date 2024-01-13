@@ -10,12 +10,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
       unique: true,
     },
-    email: {
-      type: String,
-      //required: true,
-      unique: true,
-      trim: true,
-    },
+
     isAdmin: { type: Boolean, required: true, default: false },
   },
   {
