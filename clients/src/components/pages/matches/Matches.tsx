@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getAllMatches } from "../../../service/match.service";
 import { NavLink } from "react-router-dom";
-import { format } from "date-fns";
+import { format, set } from "date-fns";
 
 const Matches = () => {
   const [matches, setMatches]: any = useState([]);
+  const [filteredMatches, setFilteredMatches]: any = useState([]);
 
   const [currentDate, setCurrentDate] = useState("");
 
@@ -18,6 +19,16 @@ const Matches = () => {
 
     const fetchedMatches = async () => {
       const res = await getAllMatches();
+
+      if (res) {
+        // filter matches
+        const matchesFiltered = res.data.filter((match: any) =>
+          match.matchDate.includes(currentDate)
+        );
+
+        setFilteredMatches(matchesFiltered);
+      }
+
       if (res) {
         setMatches(res.data);
       }
@@ -30,8 +41,8 @@ const Matches = () => {
   return (
     <section>
       <div className="row">
-        {matches.length > 0 &&
-          matches.map((match: any) => (
+        {filteredMatches.length > 0 &&
+          filteredMatches.map((match: any) => (
             <div className="col-md-6 mb-3" key={match._id}>
               <div className="bg-white p-4 rounded shadow">
                 <h2 className="text-xl font-bold">Match Day</h2>

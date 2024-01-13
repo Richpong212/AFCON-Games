@@ -77,20 +77,6 @@ const Admin = () => {
                   onChange={handleinputchange}
                 />
               </div>
-              <div className="d-flex flex-column">
-                <label className="text-dark" htmlFor="email">
-                  Admin Secrete Email
-                </label>
-                <input
-                  id="email"
-                  className="form-control"
-                  type="email"
-                  name="email"
-                  placeholder="required"
-                  value={user.email}
-                  onChange={handleinputchange}
-                />
-              </div>
 
               <button type="submit" className="btn btn-primary mt-4">
                 Create User
