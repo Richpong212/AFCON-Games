@@ -1,18 +1,19 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "../components/layouts/navbar/Navbar";
 import Homepage from "../components/pages/home/Homepage";
 import Leaderboard from "../components/pages/leaderboard/Leaderboard";
 import Admin from "../components/pages/admin/Admin";
 import Prediction from "../components/pages/prediction/Prediction";
 import Predictions from "../components/pages/allpredictions/Predictions";
+import NavAppBar from "../components/layouts/Navbar2";
 
 const IndexRoute = () => {
   return (
     <BrowserRouter>
       <nav>
-        <Navbar />
+        <NavAppBar />
       </nav>
+
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
