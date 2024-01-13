@@ -4,6 +4,7 @@ import { IPrediction } from "../interface/prediction.interface";
 const predictionSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    pointesEarned: { type: Number, default: 0 },
     match: { type: mongoose.Schema.Types.ObjectId, ref: "Match" },
     homeTeam: { type: String, required: true },
     awayTeam: { type: String, required: true },

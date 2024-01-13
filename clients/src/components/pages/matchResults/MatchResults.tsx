@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getAllMatches } from "../../../service/match.service";
+import { format } from "date-fns";
 import { NavLink } from "react-router-dom";
-import { format, set } from "date-fns";
 
-const Matches = ({ btntext }: any) => {
+const MatchResults = () => {
   const [matches, setMatches]: any = useState([]);
   const [filteredMatches, setFilteredMatches]: any = useState([]);
 
@@ -40,15 +40,24 @@ const Matches = ({ btntext }: any) => {
 
   return (
     <section>
+      <NavLink to="" style={{ textDecoration: "none", color: "black" }}>
+        <span className="text-xl font-bold">All Match Results</span>
+      </NavLink>
       <div className="row">
-        {filteredMatches.length > 0 &&
-          filteredMatches.map((match: any) => (
+        {matches.length > 0 &&
+          matches.map((match: any) => (
             <div className="col-md-6 mb-3" key={match._id}>
               <div className="bg-white p-4 rounded shadow">
                 <h2 className="text-xl font-bold">Match Day</h2>
-                <p className="text-gray-600">
-                  {match.homeTeam} vs {match.awayTeam}
-                </p>
+                <div className="homeTeam d-flex  justify-content-between">
+                  <div>{match.homeTeam}</div>
+                  <div>{match.homeScore}</div>
+                </div>
+                <span>vs</span>
+                <div className="awayTeam mb-5 d-flex justify-content-between">
+                  <div>{match.awayTeam}</div>
+                  <div>{match.awayScore}</div>
+                </div>
                 <div>
                   <p>
                     Date:
@@ -56,9 +65,9 @@ const Matches = ({ btntext }: any) => {
                   </p>
                   <p>Venue: {match.matchVenue}</p>
                 </div>
-                <NavLink to={`/matches/prediction/${match._id}`}>
+                <NavLink to={`/matches/update/${match._id}`}>
                   <button className="mt-4 btn btn-primary">
-                    {btntext ? btntext : "Predict"}
+                    {"Update Results"}
                   </button>
                 </NavLink>
               </div>
@@ -69,4 +78,4 @@ const Matches = ({ btntext }: any) => {
   );
 };
 
-export default Matches;
+export default MatchResults;

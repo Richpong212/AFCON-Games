@@ -10,6 +10,10 @@ const userSchema = new mongoose.Schema(
       trim: true,
       unique: true,
     },
+    TeamToWin: {
+      type: String,
+      trim: true,
+    },
 
     isAdmin: { type: Boolean, required: true, default: false },
   },

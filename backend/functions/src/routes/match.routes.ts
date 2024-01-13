@@ -3,6 +3,7 @@ import {
   createMatch,
   getMatches,
   getSingleMatch,
+  updateMatch,
 } from "../controllers/match.controller";
 
 const matchRouter = Router();
@@ -15,5 +16,8 @@ matchRouter.get("/matches", getMatches);
 
 // get a single match
 matchRouter.get("/matches/:id", getSingleMatch);
+
+// update a match
+matchRouter.put("/matches/:id", updateMatch);
 
 export default matchRouter;

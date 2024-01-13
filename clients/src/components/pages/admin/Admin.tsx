@@ -3,6 +3,7 @@ import { createUser } from "../../../service/user.service";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CreateMatch from "../createMatch/CreateMatch";
+import MatchResults from "../matchResults/MatchResults";
 
 const Admin = () => {
   const [user, setuser] = useState({
@@ -12,6 +13,7 @@ const Admin = () => {
 
   const [selected, setselected] = useState(false);
   const [selectedMatch, setselectedMatch] = useState(false);
+  const [matchResult, setmatchResult] = useState(false);
 
   const handleinputchange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -31,12 +33,21 @@ const Admin = () => {
   const handleCreateUserBtn = () => {
     setselected(true);
     setselectedMatch(false);
+    setmatchResult(false);
   };
 
   // handle create match button
   const handleCreateMatchBtn = () => {
     setselected(false);
     setselectedMatch(true);
+    setmatchResult(false);
+  };
+
+  // handle match result button
+  const handleMatchResultBtn = () => {
+    setselected(false);
+    setselectedMatch(false);
+    setmatchResult(true);
   };
 
   return (
@@ -57,6 +68,14 @@ const Admin = () => {
             className="btn btn-primary mt-4"
           >
             Create Match
+          </button>
+        </div>
+        <div>
+          <button
+            onClick={handleMatchResultBtn}
+            className="btn btn-primary mt-4 mx-3"
+          >
+            Match Result
           </button>
         </div>
       </div>
@@ -87,6 +106,7 @@ const Admin = () => {
       )}
 
       {selectedMatch && <CreateMatch />}
+      {matchResult && <MatchResults />}
     </section>
   );
 };

@@ -34,6 +34,18 @@ const Predictions = () => {
                     <div>{prediction.awayTeam}</div>
                     <div>{prediction.awayScore}</div>
                   </div>
+                  <div className="awayTeam mt-3 d-flex  justify-content-between">
+                    <div>Points Earned </div>
+                    <div
+                      style={{
+                        color: prediction.pointesEarned > 0 ? "green" : "red",
+                      }}
+                    >
+                      {prediction.pointesEarned
+                        ? prediction.pointesEarned
+                        : "--"}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

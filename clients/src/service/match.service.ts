@@ -47,3 +47,19 @@ export const getSingleMatch = async (id: string) => {
     return error;
   }
 };
+
+// update a match
+export const updateMatch = async (id: string, match: IMatch, toast: any) => {
+  try {
+    const res = await axios.put(`${baseUrl}/matches/${id}`, match);
+    toast("Match updated successfully", {
+      type: "success",
+    });
+    return res.data;
+  } catch (error: any) {
+    toast(error.response.data.message, {
+      type: "error",
+    });
+    return error;
+  }
+};

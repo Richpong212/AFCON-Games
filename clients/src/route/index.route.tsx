@@ -7,6 +7,8 @@ import Prediction from "../components/pages/prediction/Prediction";
 import Predictions from "../components/pages/allpredictions/Predictions";
 import NavBarApp from "../components/layouts/Navbar2";
 import Navbar from "../components/layouts/navbar/Navbar";
+import Standings from "../components/pages/standings/Standings";
+import UpdateMatch from "../components/pages/matchResults/UpdateMatch";
 
 const IndexRoute = () => {
   return (
@@ -20,7 +22,10 @@ const IndexRoute = () => {
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/matches/prediction/:matchid" element={<Prediction />} />
+        <Route path="/matches/update/:matchid" element={<UpdateMatch />} />
+
         <Route path="/matches/predictions" element={<Predictions />} />
+        <Route path="/standings" element={<Standings />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </BrowserRouter>
