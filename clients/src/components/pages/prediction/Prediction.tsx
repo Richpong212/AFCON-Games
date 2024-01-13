@@ -14,6 +14,20 @@ const Prediction = () => {
     awayScore: "",
     user: "",
   });
+  const [predictionTime, setPredictionTime] = useState("");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const currentTime = new Date().toLocaleTimeString();
+      setPredictionTime(currentTime);
+    }, 1000);
+
+    // Cleanup the interval when the component is unmounted
+    return () => clearInterval(interval);
+  }, []);
+
+  // prediction time limit
+  const predictionTimeLimit = "12:00:00";
 
   // handle input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,6 +86,37 @@ const Prediction = () => {
       <h2 className="text-2xl font-bold text-dark">Make a Prediction</h2>
       <div className="card">
         <div className="card-body">
+          {predictionTime >= predictionTimeLimit ? (
+            <span
+              style={{
+                position: "absolute",
+                left: "80%",
+                top: "-1rem",
+                color: "white",
+                padding: "0.5rem",
+                backgroundColor: "red",
+              }}
+              className="text-xl font-bold "
+            >
+              Prediction closed
+            </span>
+          ) : (
+            <span>
+              <span
+                style={{
+                  position: "absolute",
+                  left: "80%",
+                  top: "-1rem",
+                  color: "white",
+                  padding: "0.5rem",
+                  backgroundColor: "green",
+                }}
+                className="text-xl font-bold "
+              >
+                Prediction open
+              </span>
+            </span>
+          )}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="mb-4">
               <label className="form-label text-dark" htmlFor="name">
@@ -131,8 +176,13 @@ const Prediction = () => {
                 />
               </div>
             </div>
+            <p>Current Time: {predictionTime}</p>
             {/* Submit button */}
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={predictionTime >= predictionTimeLimit}
+            >
               Submit Prediction
             </button>
           </form>

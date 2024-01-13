@@ -79,14 +79,14 @@ const Admin = () => {
               </div>
               <div className="d-flex flex-column">
                 <label className="text-dark" htmlFor="email">
-                  Email
+                  Admin Secrete Email
                 </label>
                 <input
                   id="email"
                   className="form-control"
                   type="email"
                   name="email"
-                  placeholder="optional"
+                  placeholder="required"
                   value={user.email}
                   onChange={handleinputchange}
                 />
