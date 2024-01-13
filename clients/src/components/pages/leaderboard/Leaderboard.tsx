@@ -33,7 +33,7 @@ const Leaderboard = () => {
                 />
                 <div>
                   <h3 className="text-lg font-bold">@{user.name}</h3>
-                  <p>Correct Predictions: 5</p>
+                  {/*<p>Correct Predictions: 5</p> */}
                 </div>
               </div>
             </div>

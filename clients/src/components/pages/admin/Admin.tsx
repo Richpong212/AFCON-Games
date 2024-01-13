@@ -86,6 +86,7 @@ const Admin = () => {
                   className="form-control"
                   type="email"
                   name="email"
+                  placeholder="optional"
                   value={user.email}
                   onChange={handleinputchange}
                 />

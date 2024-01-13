@@ -8,9 +8,9 @@ export const createUser = async (req: Request, res: Response) => {
     const user = req.body;
 
     // check if user details are complete
-    if (!user.email || !user.name) {
+    if (!user.name) {
       return res.status(400).json({
-        message: "name and email are required",
+        message: "name is  required",
       });
     }
 
