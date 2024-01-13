@@ -17,7 +17,7 @@ export default function NavAppBar() {
             }}
             to={"/"}
           >
-            <SportsIcon fontSize="small" />
+            <SportsIcon fontSize="medium" />
           </NavLink>
 
           <Typography
@@ -42,7 +42,7 @@ export default function NavAppBar() {
           </Typography>
           <NavLink
             to="/"
-            className="text-decoration-none mx-1 ms-1"
+            className="text-decoration-none mx-1 "
             style={{
               color: "white",
               textDecoration: "none",
@@ -57,13 +57,13 @@ export default function NavAppBar() {
               textDecoration: "none",
               fontSize: "0.9rem",
             }}
-            className=" text-decoration-none  mx-1 ms-1"
+            className=" text-decoration-none   "
             to="/leaderboard"
           >
             Leaderboard
           </NavLink>
           <NavLink
-            className="text-decoration-none mx-1 ms-1"
+            className="text-decoration-none mx-1 "
             style={{
               color: "white",
               textDecoration: "none",
@@ -74,7 +74,7 @@ export default function NavAppBar() {
             Predictions
           </NavLink>
           <NavLink
-            className="text-decoration-none mx-1 ms-1"
+            className="text-decoration-none "
             style={{
               color: "white",
               textDecoration: "none",
