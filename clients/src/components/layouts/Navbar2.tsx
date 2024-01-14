@@ -73,6 +73,7 @@ export default function NavAppBar() {
           >
             Predictions
           </NavLink>
+          {/* 
           <NavLink
             className="text-decoration-none "
             style={{
@@ -84,6 +85,7 @@ export default function NavAppBar() {
           >
             Admin
           </NavLink>
+          */}
         </Toolbar>
       </AppBar>
     </Box>
