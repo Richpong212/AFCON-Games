@@ -1,3 +1,4 @@
+import Prediction from "../models/prediction.model";
 import User from "../models/user.model";
 import { Request, Response } from "express";
 
@@ -33,7 +34,6 @@ export const createUser = async (req: Request, res: Response) => {
       data: savedUser,
     });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({
       message: "Server Error",
     });
@@ -48,6 +48,49 @@ export const getAllUsers = async (req: Request, res: Response) => {
     return res.status(200).json({
       message: "Users fetched successfully",
       data: users,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Server Error",
+    });
+  }
+};
+
+// get a user with all predictions made
+export const getUserWithPredictions = async (req: Request, res: Response) => {
+  try {
+    // get the user id from the request params
+    const { id } = req.params;
+
+    // check if user exists
+    const existingUser = await User.findById(id);
+    if (!existingUser) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    // get all predictions made by the user
+    const predictions = await Prediction.find({ user: id });
+
+    // sum up the pointsEarned for all predictions
+    const totalPoints = predictions.reduce(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (acc, prediction: any) => acc + prediction.pointesEarned,
+      0
+    );
+
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      {
+        Points: totalPoints,
+      },
+      { new: true }
+    );
+
+    return res.status(200).json({
+      message: "User fetched successfully",
+      data: updatedUser,
     });
   } catch (error) {
     return res.status(500).json({

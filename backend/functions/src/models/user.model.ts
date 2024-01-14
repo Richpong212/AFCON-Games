@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    Points: {
+      type: Number,
+      default: 0,
+    },
 
     isAdmin: { type: Boolean, required: true, default: false },
   },

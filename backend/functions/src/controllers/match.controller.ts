@@ -54,8 +54,8 @@ export const createMatch = async (req: Request, res: Response) => {
 // get all matches
 export const getMatches = async (req: Request, res: Response) => {
   try {
-    // get all matches
-    const matches = await Match.find({});
+    // get all matches with the latest match first
+    const matches = await Match.find({}).sort({ createdAt: -1 });
 
     return res.status(200).json({
       message: "Matches fetched successfully",

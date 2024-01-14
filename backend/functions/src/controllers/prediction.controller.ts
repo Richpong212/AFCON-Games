@@ -82,7 +82,8 @@ export const getAllPredictions = async (req: Request, res: Response) => {
     // get all predictions from the database
     const predictions = await Prediction.find()
       .populate("user")
-      .populate("match");
+      .populate("match")
+      .sort({ createdAt: -1 });
 
     return res.status(200).json({
       message: "Predictions retrieved successfully",

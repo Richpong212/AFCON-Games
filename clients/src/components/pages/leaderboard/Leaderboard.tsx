@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { getAllUsers } from "../../../service/user.service";
-import { NavLink } from "react-router-dom";
 
 const Leaderboard = () => {
   const [user, setuser] = useState([]);
