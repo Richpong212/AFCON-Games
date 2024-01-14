@@ -22,7 +22,6 @@ const CreateMatch = () => {
   const handlesubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const res = await createMatch(match, toast);
-    console.log(res);
     if (res.message === "Match created successfully") {
       setmatch({
         homeTeam: "",

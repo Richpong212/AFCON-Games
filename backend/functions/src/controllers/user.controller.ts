@@ -71,7 +71,7 @@ export const getUserWithPredictions = async (req: Request, res: Response) => {
     }
 
     // get all predictions made by the user
-    const predictions = await Prediction.find({ user: id });
+    const predictions = await Prediction.find({ user: id }).populate("match");
 
     // sum up the pointsEarned for all predictions
     const totalPoints = predictions.reduce(
@@ -88,9 +88,14 @@ export const getUserWithPredictions = async (req: Request, res: Response) => {
       { new: true }
     );
 
+    // send the updatedUser and predictions to the client
+
     return res.status(200).json({
       message: "User fetched successfully",
-      data: updatedUser,
+      data: {
+        user: updatedUser,
+        predictions,
+      },
     });
   } catch (error) {
     return res.status(500).json({

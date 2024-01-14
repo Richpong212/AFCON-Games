@@ -3,6 +3,7 @@ import { getAllPredictions } from "../../../service/prediction.service";
 import { ToastContainer, toast } from "react-toastify";
 import { format } from "date-fns";
 import AllPredictionsMade from "./AllPredictionsMade";
+import { NavLink } from "react-router-dom";
 
 const Predictions = () => {
   const [predictions, setPredictions]: any = useState([]);
@@ -59,7 +60,11 @@ const Predictions = () => {
         <div className="row">
           {sortedPredictions.length > 0 &&
             sortedPredictions.map((prediction: any) => (
-              <div key={prediction._id} className="col-md-6 mb-3">
+              <NavLink
+                to={`/users/${prediction?.user?._id}`}
+                key={prediction._id}
+                className="col-md-6 mb-3 text-decoration-none text-dark"
+              >
                 <div className="bg-white p-4 rounded shadow">
                   {prediction.pointesEarned === 3 && (
                     <span
@@ -110,7 +115,7 @@ const Predictions = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </NavLink>
             ))}
         </div>
       )}

@@ -32,3 +32,13 @@ export const getAllUsers = async () => {
     return error;
   }
 };
+
+// get a user
+export const getUser = async (id: string) => {
+  try {
+    const res = await axios.get(`${baseUrl}/users/${id}`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
