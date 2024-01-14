@@ -108,8 +108,9 @@ const Prediction = () => {
                   left: "80%",
                   top: "-1rem",
                   color: "white",
-                  padding: "0.5rem",
+                  padding: "0.3rem",
                   backgroundColor: "green",
+                  fontSize: "0.8rem",
                 }}
                 className="text-xl font-bold "
               >
