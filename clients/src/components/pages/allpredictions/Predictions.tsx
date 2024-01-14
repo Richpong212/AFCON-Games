@@ -7,10 +7,17 @@ import AllPredictionsMade from "./AllPredictionsMade";
 const Predictions = () => {
   const [predictions, setPredictions]: any = useState([]);
 
+  // get the current date
   const currentDate = format(new Date(), "yyyy-MM-dd");
+  // filtered predictions
   const filteredPredictions = predictions.filter(
     (prediction: any) =>
       format(new Date(prediction.createdAt), "yyyy-MM-dd") === currentDate
+  );
+
+  // find the all the predictions with the one with the highest points earned on top
+  const sortedPredictions = filteredPredictions.sort(
+    (a: any, b: any) => b.pointesEarned - a.pointesEarned
   );
 
   // fetch the predictions from the database
@@ -50,10 +57,31 @@ const Predictions = () => {
 
       {today && (
         <div className="row">
-          {filteredPredictions.length > 0 &&
-            filteredPredictions.map((prediction: any) => (
+          {sortedPredictions.length > 0 &&
+            sortedPredictions.map((prediction: any) => (
               <div key={prediction._id} className="col-md-6 mb-3">
                 <div className="bg-white p-4 rounded shadow">
+                  {prediction.pointesEarned === 3 && (
+                    <span
+                      style={{
+                        position: "absolute",
+                        right: "10%",
+                        backgroundColor: "green",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        height: "60px",
+                        width: "60px",
+                        borderRadius: "50%",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        color: "white",
+                        textAlign: "center",
+                      }}
+                    >
+                      Game Master
+                    </span>
+                  )}
                   <h2 className="text-xl font-bold">
                     @{prediction?.user?.name}
                   </h2>

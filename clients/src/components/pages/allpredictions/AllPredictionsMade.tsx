@@ -23,6 +23,27 @@ const AllPredictionsMade = () => {
           predictions.map((prediction: any) => (
             <div key={prediction._id} className="col-md-6 mb-3">
               <div className="bg-white p-4 rounded shadow">
+                {prediction.pointesEarned === 3 && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      right: "10%",
+                      backgroundColor: "green",
+                      fontSize: "12px",
+                      fontWeight: "bold",
+                      height: "60px",
+                      width: "60px",
+                      borderRadius: "50%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      color: "white",
+                      textAlign: "center",
+                    }}
+                  >
+                    Game Master
+                  </span>
+                )}
                 <h2 className="text-xl font-bold">@{prediction?.user?.name}</h2>
                 <p className="text-gray-600">Predicted </p>
                 <div>
