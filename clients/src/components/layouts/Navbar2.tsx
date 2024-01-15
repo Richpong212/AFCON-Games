@@ -17,7 +17,7 @@ export default function NavAppBar() {
             }}
             to={"/"}
           >
-            <SportsIcon fontSize="medium" />
+            <SportsIcon fontSize="large" />
           </NavLink>
 
           <Typography
@@ -25,9 +25,9 @@ export default function NavAppBar() {
             component="div"
             sx={{ flexGrow: 1 }}
             style={{
-              fontFamily: "cursive",
               fontSize: "1.5rem",
               cursor: "pointer",
+              fontFamily: "Roboto",
             }}
           >
             <NavLink
@@ -46,7 +46,7 @@ export default function NavAppBar() {
             style={{
               color: "white",
               textDecoration: "none",
-              fontSize: "0.9rem",
+              fontSize: "1rem",
             }}
           >
             Matches
@@ -55,7 +55,7 @@ export default function NavAppBar() {
             style={{
               color: "white",
               textDecoration: "none",
-              fontSize: "0.9rem",
+              fontSize: "1rem",
             }}
             className=" text-decoration-none   "
             to="/leaderboard"
@@ -67,7 +67,7 @@ export default function NavAppBar() {
             style={{
               color: "white",
               textDecoration: "none",
-              fontSize: "0.9rem",
+              fontSize: "1rem",
             }}
             to="/matches/predictions"
           >
