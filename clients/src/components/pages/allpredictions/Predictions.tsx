@@ -11,13 +11,6 @@ const Predictions = () => {
   // current date
   const currentDate = new Date();
 
-  // filter matches by date
-  const filteredMatches = predictions.filter((match: any) => {
-    const matchDate = new Date(match.matchDate);
-    const matches = matchDate.toDateString() === currentDate.toDateString();
-    return matches;
-  });
-
   // filter and sort predictions based on today's date
   const sortedPredictions = predictions
     .filter((prediction: any) => {

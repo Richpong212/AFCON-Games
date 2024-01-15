@@ -59,7 +59,15 @@ const Leaderboard = () => {
                 />
                 <div>
                   <h3 className="text-lg font-bold">{user.name}</h3>
-                  {/*<p>Correct Predictions: 5</p> */}
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: "bold",
+                      color: "green",
+                    }}
+                  >
+                    Points Earned: {user.Points}
+                  </p>
                 </div>
               </div>
             </NavLink>
