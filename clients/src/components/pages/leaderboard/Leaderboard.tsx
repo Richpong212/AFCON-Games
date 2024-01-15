@@ -53,7 +53,7 @@ const Leaderboard = () => {
                   alt="@user1"
                   className="w-10 h-10 rounded-full"
                   style={{
-                    height: "50px",
+                    height: "60px",
                   }}
                   src="https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/man3-512.png"
                 />
@@ -65,8 +65,7 @@ const Leaderboard = () => {
                   <h3
                     className="text-lg font-bold"
                     style={{
-                      marginBottom: "0px",
-                      fontSize: "18px",
+                      marginBottom: "-1px",
                     }}
                   >
                     {user.name}
