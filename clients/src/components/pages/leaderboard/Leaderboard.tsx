@@ -57,8 +57,20 @@ const Leaderboard = () => {
                   }}
                   src="https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/man3-512.png"
                 />
-                <div>
-                  <h3 className="text-lg font-bold">{user.name}</h3>
+                <div
+                  style={{
+                    marginLeft: "10px",
+                  }}
+                >
+                  <h3
+                    className="text-lg font-bold"
+                    style={{
+                      marginBottom: "0px",
+                      fontSize: "18px",
+                    }}
+                  >
+                    {user.name}
+                  </h3>
                   <p
                     style={{
                       fontSize: "12px",
