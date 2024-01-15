@@ -6,6 +6,9 @@ import { NavLink } from "react-router-dom";
 const AllPredictionsMade = () => {
   const [predictions, setPredictions]: any = useState([]);
 
+  // current date
+  const currentDate = new Date().toDateString();
+
   // fetch the predictions from the database
   useEffect(() => {
     const fetchPredictions = async () => {
@@ -50,6 +53,19 @@ const AllPredictionsMade = () => {
                   </span>
                 )}
                 <h2 className="text-xl font-bold">@{prediction?.user?.name}</h2>
+                <p className="text-gray-600">
+                  {currentDate !==
+                    new Date(prediction?.match.matchDate).toDateString() && (
+                    <span
+                      style={{
+                        color: "red",
+                      }}
+                      className="text-red-600"
+                    >
+                      Dead Match
+                    </span>
+                  )}
+                </p>
                 <p className="text-gray-600">Predicted </p>
                 <div>
                   <div className="homeTeam d-flex  justify-content-between">
