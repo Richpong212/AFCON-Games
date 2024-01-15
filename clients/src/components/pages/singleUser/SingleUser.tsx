@@ -6,7 +6,6 @@ const SingleUser = () => {
   const [user, setUser]: any = useState({});
   // get the id from the params
   const { id } = useParams() as any;
-  console.log(user);
 
   // fetch the user from the database
   useEffect(() => {
@@ -55,10 +54,10 @@ const SingleUser = () => {
                     {prediction?.match?.awayTeam}
                   </td>
                   <td>
-                    {prediction?.match?.homeScore &&
-                    prediction?.match?.awayScore
+                    {prediction?.match?.homeScore !== undefined &&
+                    prediction?.match?.awayScore !== undefined
                       ? `${prediction?.match?.homeScore} - ${prediction?.match?.awayScore}`
-                      : "NaN"}
+                      : "Not played yet"}
                   </td>
                   <td>{prediction?.pointesEarned}</td>
                 </tr>
