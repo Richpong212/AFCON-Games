@@ -14,7 +14,7 @@ const LiveMatches = () => {
   const matchTime = cafMacthes?.map((match: any) => {
     const matchStatus = match?.EVENTS?.map((event: any) => {
       const matchStatus = event?.MATCH_STATUS;
-      // refresh the time every 10 seconds
+      // refresh the time every 5 seconds
       setInterval(() => {
         set(matchStatus, event?.MATCH_STATUS);
       }, 10000);
