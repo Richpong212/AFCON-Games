@@ -1,25 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { getAllMatches } from "../../../service/match.service";
 import { NavLink } from "react-router-dom";
-import { format } from "date-fns";
+import { format, set } from "date-fns";
 import AllMatches from "./AllMatches";
+import LiveMatches from "./liveMatches";
 
 const Matches = ({ btntext }: any) => {
   const [matches, setMatches]: any = useState([]);
 
   const [todayMatches, setTodayMatches] = useState(true);
   const [allMatches, setAllMatches] = useState(false);
+  const [liveMatches, setLiveMatches] = useState(false);
 
   // handle today matches
   const handleTodayMatches = () => {
     setTodayMatches(true);
     setAllMatches(false);
+    setLiveMatches(false);
   };
 
   // handle all matches
   const handleAllMatches = () => {
     setTodayMatches(false);
     setAllMatches(true);
+    setLiveMatches(false);
+  };
+
+  const handleLiveMatches = () => {
+    setTodayMatches(false);
+    setAllMatches(false);
+    setLiveMatches(true);
   };
 
   // current date
@@ -42,6 +52,9 @@ const Matches = ({ btntext }: any) => {
     <section>
       <NavLink onClick={handleTodayMatches} to={""}>
         <span className="text-xl font-bold"> Matches</span>
+      </NavLink>
+      <NavLink className="mx-2" onClick={handleLiveMatches} to={""}>
+        <span className="text-xl font-bold"> Live Match</span>
       </NavLink>
       {/*
         <NavLink className="mx-2" to={""} onClick={handleAllMatches}>
@@ -80,6 +93,7 @@ const Matches = ({ btntext }: any) => {
       )}
 
       {allMatches && <AllMatches matches={matches} />}
+      {liveMatches && <LiveMatches />}
     </section>
   );
 };
