@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { getAllPredictions } from "../../../service/prediction.service";
 import { ToastContainer, toast } from "react-toastify";
-import { format } from "date-fns";
 import AllPredictionsMade from "./AllPredictionsMade";
 import { NavLink } from "react-router-dom";
-import liveMatches from "../matches/liveMatches";
 
 const Predictions = () => {
   const [predictions, setPredictions]: any = useState([]);
 
   // current date
   const currentDate = new Date();
-
-  console.log(currentDate);
 
   // prediction time limit
   const predictionTimeLimit = "12:00:00";
