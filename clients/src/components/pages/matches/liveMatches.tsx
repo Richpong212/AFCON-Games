@@ -73,6 +73,7 @@ const LiveMatches = () => {
   });
 
   // find the home team score of the first game
+
   const homeTeamScore = cafMacthes?.map((match: any) => {
     // map through all the mactehs
     const homeTeam = match.EVENTS.map((event: any) => {
@@ -82,12 +83,13 @@ const LiveMatches = () => {
     });
     return homeTeam;
   });
+  console.log(homeTeamScore);
 
   // find the away team score of the first game
   const awayTeamScore = cafMacthes?.map((match: any) => {
     // map through all the mactehs
     const homeTeam = match.EVENTS.map((event: any) => {
-      const homeTeam = event?.HOME_SCORE;
+      const homeTeam = event?.AWAY_SCORE;
 
       return homeTeam;
     });
