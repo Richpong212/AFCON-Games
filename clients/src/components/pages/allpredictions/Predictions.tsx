@@ -3,10 +3,16 @@ import { getAllPredictions } from "../../../service/prediction.service";
 import { ToastContainer, toast } from "react-toastify";
 import { format } from "date-fns";
 import AllPredictionsMade from "./AllPredictionsMade";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Predictions = () => {
   const [predictions, setPredictions]: any = useState([]);
+
+  const navigate = useNavigate();
+
+  const handleNavigate = (id: any) => {
+    navigate(`/predictions/${id}`);
+  };
 
   // current date
   const currentDate = new Date();
@@ -58,62 +64,71 @@ const Predictions = () => {
         <div className="row">
           {sortedPredictions.length > 0 &&
             sortedPredictions.map((prediction: any) => (
-              <NavLink
-                to={`/users/${prediction?.user?._id}`}
-                key={prediction._id}
-                className="col-md-6 mb-3 text-decoration-none text-dark"
-              >
-                <div className="bg-white p-4 rounded shadow">
-                  {prediction.pointesEarned === 3 && (
-                    <span
-                      style={{
-                        position: "absolute",
-                        right: "10%",
-                        backgroundColor: "green",
-                        fontSize: "12px",
-                        fontWeight: "bold",
-                        height: "60px",
-                        width: "60px",
-                        borderRadius: "50%",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        color: "white",
-                        textAlign: "center",
-                      }}
-                    >
-                      WIN
-                    </span>
-                  )}
-                  <h2 className="text-xl font-bold">
-                    @{prediction?.user?.name}
-                  </h2>
-                  <p className="text-gray-600">Predicted </p>
-                  <div>
-                    <div className="homeTeam d-flex  justify-content-between">
-                      <div>{prediction.homeTeam}</div>
-                      <div>{prediction.homeScore}</div>
-                    </div>
-                    <span>vs</span>
-                    <div className="awayTeam d-flex  justify-content-between">
-                      <div>{prediction.awayTeam}</div>
-                      <div>{prediction.awayScore}</div>
-                    </div>
-                    <div className="awayTeam mt-3 d-flex  justify-content-between">
-                      <div>Points Earned </div>
-                      <div
+              <div key={prediction._id} className="col-md-6 mb-3 ">
+                <NavLink
+                  to={`/predictions/edit/${prediction._id}`}
+                  className="text-decoration-none text-dark"
+                  style={{ position: "absolute", top: "10px", right: "25px" }}
+                >
+                  Edit prediction
+                </NavLink>
+                <NavLink
+                  to={`/users/${prediction?.user?._id}`}
+                  className="text-decoration-none text-dark"
+                >
+                  <div className="bg-white p-4 rounded shadow">
+                    {prediction.pointesEarned === 3 && (
+                      <span
                         style={{
-                          color: prediction.pointesEarned > 0 ? "green" : "red",
+                          position: "absolute",
+                          right: "10%",
+                          backgroundColor: "green",
+                          fontSize: "12px",
+                          fontWeight: "bold",
+                          height: "60px",
+                          width: "60px",
+                          borderRadius: "50%",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          color: "white",
+                          textAlign: "center",
                         }}
                       >
-                        {prediction.pointesEarned
-                          ? prediction.pointesEarned
-                          : "--"}
+                        WIN
+                      </span>
+                    )}
+                    <h2 className="text-xl font-bold">
+                      @{prediction?.user?.name}
+                    </h2>
+                    <p className="text-gray-600">Predicted </p>
+                    <div>
+                      <div className="homeTeam d-flex  justify-content-between">
+                        <div>{prediction.homeTeam}</div>
+                        <div>{prediction.homeScore}</div>
+                      </div>
+                      <span>vs</span>
+                      <div className="awayTeam d-flex  justify-content-between">
+                        <div>{prediction.awayTeam}</div>
+                        <div>{prediction.awayScore}</div>
+                      </div>
+                      <div className="awayTeam mt-3 d-flex  justify-content-between">
+                        <div>Points Earned </div>
+                        <div
+                          style={{
+                            color:
+                              prediction.pointesEarned > 0 ? "green" : "red",
+                          }}
+                        >
+                          {prediction.pointesEarned
+                            ? prediction.pointesEarned
+                            : "--"}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </NavLink>
+                </NavLink>
+              </div>
             ))}
         </div>
       )}

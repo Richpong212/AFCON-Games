@@ -10,6 +10,7 @@ import Navbar from "../components/layouts/navbar/Navbar";
 import Standings from "../components/pages/standings/Standings";
 import UpdateMatch from "../components/pages/matchResults/UpdateMatch";
 import SingleUser from "../components/pages/singleUser/SingleUser";
+import EditPredictions from "../components/pages/allpredictions/EditPredictions";
 
 const IndexRoute = () => {
   return (
@@ -27,6 +28,10 @@ const IndexRoute = () => {
         <Route path="/users/:id" element={<SingleUser />} />
         <Route path="/matches/predictions" element={<Predictions />} />
         <Route path="/standings" element={<Standings />} />
+        <Route
+          path="/predictions/edit/:matchid"
+          element={<EditPredictions />}
+        />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </BrowserRouter>

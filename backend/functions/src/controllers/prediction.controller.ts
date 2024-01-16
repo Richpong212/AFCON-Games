@@ -96,3 +96,86 @@ export const getAllPredictions = async (req: Request, res: Response) => {
     });
   }
 };
+
+// update a prediction by id
+export const updatePrediction = async (req: Request, res: Response) => {
+  try {
+    // get the prediction id from the request params
+    const predictionId = req.params.id;
+
+    // get the prediction details from the request body
+    const prediction = req.body;
+
+    // check if the prediction exists
+    const existingPrediction = await Prediction.findById(predictionId);
+    if (!existingPrediction) {
+      return res.status(404).json({
+        message: "Prediction not found",
+      });
+    }
+
+    // check if prediction details are complete
+    if (!prediction.homeScore || !prediction.awayScore) {
+      return res.status(400).json({
+        message: "Please provide the prediction scores",
+      });
+    }
+
+    // find the prediction in the database
+    const onePrediction = await Prediction.findById(predictionId);
+
+    // check if prediction exists
+    if (!onePrediction) {
+      return res.status(404).json({
+        message: "Prediction not found",
+      });
+    }
+
+    // update the prediction
+    const updatedPrediction = await Prediction.findByIdAndUpdate(
+      predictionId,
+      prediction,
+      { new: true }
+    );
+
+    return res.status(200).json({
+      message: "Prediction updated successfully",
+      data: updatedPrediction,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Server Error",
+    });
+  }
+};
+
+// find a prediction by id
+export const getPredictionById = async (req: Request, res: Response) => {
+  try {
+    // get the prediction id from the request params
+    const predictionId = req.params.id;
+
+    // find the prediction in the database
+    const prediction = await Prediction.findById(predictionId)
+      .populate("user")
+      .populate("match");
+
+    // check if prediction exists
+    if (!prediction) {
+      return res.status(404).json({
+        message: "Prediction not found",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Prediction retrieved successfully",
+      data: prediction,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Server Error",
+    });
+  }
+};
