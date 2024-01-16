@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { getLiveSportsData } from "../../../service/livematch.service";
-import { set } from "date-fns";
 
 const LiveMatches = () => {
   const [liveMatches, setLiveMatches]: any = useState(null);
+
+  const [matchState, setMatchState] = useState({
+    matchTime: "",
+    homeTeamName: "",
+    homeTeamBadge: "",
+    awayTeamName: "",
+    awayTeamBadge: "",
+    homeTeamScore: "",
+    awayTeamScore: "",
+  });
 
   // filter the matches to get CAF African CUP
   const cafMacthes = liveMatches?.filter((match: any) => {
@@ -14,10 +23,6 @@ const LiveMatches = () => {
   const matchTime = cafMacthes?.map((match: any) => {
     const matchStatus = match?.EVENTS?.map((event: any) => {
       const matchStatus = event?.MATCH_STATUS;
-      // refresh the time every 5 seconds
-      setInterval(() => {
-        set(matchStatus, event?.MATCH_STATUS);
-      }, 10000);
 
       return matchStatus;
     });
@@ -96,6 +101,8 @@ const LiveMatches = () => {
       setLiveMatches(res);
     };
     getLiveMatches();
+
+    // set the match state
   }, []);
 
   return (

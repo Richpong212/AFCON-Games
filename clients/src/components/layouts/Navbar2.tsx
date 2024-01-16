@@ -37,7 +37,7 @@ export default function NavAppBar() {
               }}
               to="/"
             >
-              AFCON
+              AFCONADE
             </NavLink>
           </Typography>
           <NavLink
