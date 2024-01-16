@@ -25,7 +25,7 @@ export default function NavAppBar() {
             component="div"
             sx={{ flexGrow: 1 }}
             style={{
-              fontSize: "1.5rem",
+              fontSize: "1.2rem",
               cursor: "pointer",
               fontFamily: "Roboto",
             }}
