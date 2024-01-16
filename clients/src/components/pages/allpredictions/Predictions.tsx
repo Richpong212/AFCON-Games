@@ -3,19 +3,18 @@ import { getAllPredictions } from "../../../service/prediction.service";
 import { ToastContainer, toast } from "react-toastify";
 import { format } from "date-fns";
 import AllPredictionsMade from "./AllPredictionsMade";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Predictions = () => {
   const [predictions, setPredictions]: any = useState([]);
 
-  const navigate = useNavigate();
-
-  const handleNavigate = (id: any) => {
-    navigate(`/predictions/${id}`);
-  };
-
   // current date
   const currentDate = new Date();
+
+  console.log(currentDate);
+
+  // prediction time limit
+  const predictionTimeLimit = "12:00:00";
 
   // filter and sort predictions based on today's date
   const sortedPredictions = predictions
@@ -65,13 +64,15 @@ const Predictions = () => {
           {sortedPredictions.length > 0 &&
             sortedPredictions.map((prediction: any) => (
               <div key={prediction._id} className="col-md-6 mb-3 ">
-                <NavLink
-                  to={`/predictions/edit/${prediction._id}`}
-                  className="text-decoration-none text-dark"
-                  style={{ position: "absolute", top: "10px", right: "25px" }}
-                >
-                  Edit prediction
-                </NavLink>
+                {currentDate.toString() < predictionTimeLimit.toString() && (
+                  <NavLink
+                    to={`/predictions/edit/${prediction._id}`}
+                    className="text-decoration-none text-dark"
+                    style={{ position: "absolute", top: "10px", right: "25%" }}
+                  >
+                    Edit prediction
+                  </NavLink>
+                )}
                 <NavLink
                   to={`/users/${prediction?.user?._id}`}
                   className="text-decoration-none text-dark"
