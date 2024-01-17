@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const liveUrl = process.env.REACT_APP_LIVE_API;
+
 export const getLiveSportsData = async () => {
   const options = {
     method: "GET",

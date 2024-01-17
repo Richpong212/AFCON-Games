@@ -122,12 +122,21 @@ const Prediction = () => {
             <div className="mb-4">
               <label className="form-label text-dark" htmlFor="name">
                 Name
+                <span
+                  style={{
+                    color: "red",
+                    fontSize: "0.8rem",
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  * Name must be as on leadeboard
+                </span>
               </label>
               <input
                 type="text"
                 className="form-control"
                 id="name"
-                placeholder="Enter your name"
+                placeholder="Please enter your name e.g. Eric"
                 name="user"
                 value={predictionData.user}
                 onChange={handleInputChange}

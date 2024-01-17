@@ -4,16 +4,6 @@ import { getLiveSportsData } from "../../../service/livematch.service";
 const LiveMatches = () => {
   const [liveMatches, setLiveMatches]: any = useState(null);
 
-  const [matchState, setMatchState] = useState({
-    matchTime: "",
-    homeTeamName: "",
-    homeTeamBadge: "",
-    awayTeamName: "",
-    awayTeamBadge: "",
-    homeTeamScore: "",
-    awayTeamScore: "",
-  });
-
   // filter the matches to get CAF African CUP
   const cafMacthes = liveMatches?.filter((match: any) => {
     return match.COMPETITION_DESCRIPTION === "CAF";
@@ -83,7 +73,6 @@ const LiveMatches = () => {
     });
     return homeTeam;
   });
-  console.log(homeTeamScore);
 
   // find the away team score of the first game
   const awayTeamScore = cafMacthes?.map((match: any) => {
@@ -96,6 +85,12 @@ const LiveMatches = () => {
     return homeTeam;
   });
 
+  // get score to update the database
+  const scores = {
+    homeScore: homeTeamScore?.toString(),
+    awayScore: awayTeamScore?.toString(),
+  };
+
   // get the live matches
   useEffect(() => {
     const getLiveMatches = async () => {
@@ -104,7 +99,8 @@ const LiveMatches = () => {
     };
     getLiveMatches();
 
-    // set the match state
+    // update the database
+    const updateScore = async () => {};
   }, []);
 
   return (

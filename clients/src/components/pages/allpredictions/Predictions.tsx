@@ -61,15 +61,14 @@ const Predictions = () => {
           {sortedPredictions.length > 0 &&
             sortedPredictions.map((prediction: any) => (
               <div key={prediction._id} className="col-md-6 mb-3 ">
-                {currentDate.toString() < predictionTimeLimit.toString() && (
-                  <NavLink
-                    to={`/predictions/edit/${prediction._id}`}
-                    className="text-decoration-none text-dark"
-                    style={{ position: "absolute", top: "10px", right: "25%" }}
-                  >
-                    Edit prediction
-                  </NavLink>
-                )}
+                <NavLink
+                  to={`/predictions/edit/${prediction._id}`}
+                  className="text-decoration-none text-dark"
+                  style={{ position: "absolute", top: "10px", right: "25%" }}
+                >
+                  Edit prediction
+                </NavLink>
+
                 <NavLink
                   to={`/users/${prediction?.user?._id}`}
                   className="text-decoration-none text-dark"
