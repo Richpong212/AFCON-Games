@@ -89,7 +89,12 @@ const LiveMatches = () => {
   const scores = {
     homeScore: homeTeamScore?.toString(),
     awayScore: awayTeamScore?.toString(),
+    awayTeamName: awayTeamName?.toString(),
+    homeTeamName: homeTeamName?.toString(),
+    matchTime: matchTime?.toString(),
   };
+
+  console.log(scores);
 
   // get the live matches
   useEffect(() => {
@@ -146,6 +151,7 @@ const LiveMatches = () => {
           </div>
         </div>
       </section>
+
       {/*
       <section className="w-100 mt-5">
         <h2 className="text-xl font-semibold">Match Events</h2>
