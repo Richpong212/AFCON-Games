@@ -113,44 +113,47 @@ const LiveMatches = () => {
       <header className="d-flex justify-content-center align-items-center mb-4">
         <h1 className="text-2xl font-bold">Live Score</h1>
       </header>
-      <section className="w-100">
-        <h2 className="text-xl font-semibold">Current Match</h2>
-        <div className="w-100 mt-4 d-flex justify-content-between bg-light p-4 rounded-md">
-          <div className="d-flex flex-column align-items-center">
-            <p className="font-medium text-lg">{homeTeamName}</p>
-            <img
-              alt="Team A logo"
-              className="w-24 h-24 mt-2"
-              height="100"
-              src={homeTeamBadge}
-              style={{
-                aspectRatio: "100/100",
-                objectFit: "cover",
-              }}
-            />
+      {!liveMatches && <span>awaiting current match...</span>}
+      {liveMatches && (
+        <section className="w-100">
+          <h2 className="text-xl font-semibold">Current Match</h2>
+          <div className="w-100 mt-4 d-flex justify-content-between bg-light p-4 rounded-md">
+            <div className="d-flex flex-column align-items-center">
+              <p className="font-medium text-lg">{homeTeamName}</p>
+              <img
+                alt="Team A logo"
+                className="w-24 h-24 mt-2"
+                height="100"
+                src={homeTeamBadge}
+                style={{
+                  aspectRatio: "100/100",
+                  objectFit: "cover",
+                }}
+              />
+            </div>
+            <div className="d-flex flex-column align-items-center">
+              <p className="font-medium text-4xl">
+                {homeTeamScore} - {awayTeamScore}
+              </p>
+              <p className="text-sm text-gray-500">{matchTime}</p>
+            </div>
+            <div className="d-flex flex-column align-items-center">
+              <p className="font-medium text-lg">{awayTeamName}</p>
+              <img
+                alt="Team B logo"
+                className="w-24 h-24 mt-2"
+                height="100"
+                src={awayTeamBadge}
+                style={{
+                  aspectRatio: "100/100",
+                  objectFit: "cover",
+                }}
+                width="100"
+              />
+            </div>
           </div>
-          <div className="d-flex flex-column align-items-center">
-            <p className="font-medium text-4xl">
-              {homeTeamScore} - {awayTeamScore}
-            </p>
-            <p className="text-sm text-gray-500">{matchTime}</p>
-          </div>
-          <div className="d-flex flex-column align-items-center">
-            <p className="font-medium text-lg">{awayTeamName}</p>
-            <img
-              alt="Team B logo"
-              className="w-24 h-24 mt-2"
-              height="100"
-              src={awayTeamBadge}
-              style={{
-                aspectRatio: "100/100",
-                objectFit: "cover",
-              }}
-              width="100"
-            />
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/*
       <section className="w-100 mt-5">
