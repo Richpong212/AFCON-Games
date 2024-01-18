@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const Leaderboard = () => {
   const [user, setUsers] = useState([]);
+  console.log(user);
 
   // get all users
   useEffect(() => {

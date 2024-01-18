@@ -127,9 +127,15 @@ export const updateMatch = async (req: Request, res: Response) => {
         prediction.homeScore === matchhomeScore &&
         prediction.awayScore === matchawayScore;
 
-      const isPredictionWinner =
+      // if the home team wins with higher score than the away team
+      const isPredictionWinnerHome =
         prediction.homeScore > prediction.awayScore &&
         matchhomeScore > matchawayScore;
+
+      // if the away team wins with higher score than the home team
+      const isPredictionWinnerAway =
+        prediction.homeScore < prediction.awayScore &&
+        matchhomeScore < matchawayScore;
 
       const isPredictionDraw =
         prediction.homeScore === prediction.awayScore &&
@@ -138,7 +144,7 @@ export const updateMatch = async (req: Request, res: Response) => {
       if (isPredictionCorrect) {
         // update the points earned for the correct prediction
         prediction.pointesEarned = 3;
-      } else if (isPredictionWinner) {
+      } else if (isPredictionWinnerHome || isPredictionWinnerAway) {
         // update the points earned for predicting the winner
         prediction.pointesEarned = 1;
       } else if (isPredictionDraw) {
