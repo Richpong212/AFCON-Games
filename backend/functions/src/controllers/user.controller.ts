@@ -41,13 +41,37 @@ export const createUser = async (req: Request, res: Response) => {
 };
 
 // get all users
+// get all users with total points
 export const getAllUsers = async (req: Request, res: Response) => {
   try {
+    // get all users
     const users = await User.find();
 
+    // map through each user to get their predictions and calculate total points
+    const usersWithPoints = await Promise.all(
+      users.map(async (user) => {
+        // get all predictions made by the user
+        const predictions = await Prediction.find({ user: user._id });
+
+        // sum up the pointsEarned for all predictions
+        const totalPoints = predictions.reduce(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (acc, prediction: any) => acc + prediction.pointesEarned,
+          0
+        );
+
+        // create a new object with user details and total points
+        return {
+          _id: user._id,
+          name: user.name,
+          Points: totalPoints,
+        };
+      })
+    );
+
     return res.status(200).json({
-      message: "Users fetched successfully",
-      data: users,
+      message: "Users with total points fetched successfully",
+      data: usersWithPoints,
     });
   } catch (error) {
     return res.status(500).json({

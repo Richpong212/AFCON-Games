@@ -24,7 +24,7 @@ const EditPrediction = () => {
   }, []);
 
   // prediction time limit
-  const predictionTimeLimit = "12:00:00";
+  const predictionTimeLimit = "13:00:00";
 
   // handle input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
