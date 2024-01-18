@@ -123,31 +123,34 @@ export const updateMatch = async (req: Request, res: Response) => {
     // compare the predictions with the match score
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const comparedPredictions = predictions.map((prediction: any) => {
-      if (
+      const isPredictionCorrect =
         prediction.homeScore === matchhomeScore &&
-        prediction.awayScore === matchawayScore
-      ) {
-        // update the points earned for the prediction
+        prediction.awayScore === matchawayScore;
+
+      const isPredictionWinner =
+        prediction.homeScore > prediction.awayScore &&
+        matchhomeScore > matchawayScore;
+
+      const isPredictionDraw =
+        prediction.homeScore === prediction.awayScore &&
+        matchhomeScore === matchawayScore;
+
+      if (isPredictionCorrect) {
+        // update the points earned for the correct prediction
         prediction.pointesEarned = 3;
-
-        return prediction;
-      } else if (prediction.homeScore > prediction.awayScore) {
-        if (matchhomeScore > matchawayScore) {
-          // update the points earned for the prediction
-          prediction.pointesEarned = 1;
-
-          return prediction;
-        } else {
-          // update the points earned for the prediction
-          prediction.pointesEarned = 0;
-
-          return prediction;
-        }
+      } else if (isPredictionWinner) {
+        // update the points earned for predicting the winner
+        prediction.pointesEarned = 1;
+      } else if (isPredictionDraw) {
+        // update the points earned for predicting a draw
+        prediction.pointesEarned = 1;
+      } else {
+        // update the points earned for incorrect prediction
+        prediction.pointesEarned = 0;
       }
+
       return prediction;
     });
-
-    comparedPredictions;
 
     // save the predictions to the database
     await Promise.all(
