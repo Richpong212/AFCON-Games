@@ -2,23 +2,30 @@
 
 The Afconade Prediction Game App is a platform designed for friends and family to engage in a friendly prediction competition, where users predict the scores of upcoming matches and earn points based on the accuracy of their predictions. The user with the highest points at the end of the tournament is declared the winner.
 
-## Rules of the Game
+## Features
 
-1. **Prediction Deadline**: Users must submit their predictions on or before 12:00 pm on the date of the scheduled match. Prediction submission opens at 00:00 on the match day.
+### Matches
 
-2. **Scoring System**:
-   - Exact Match: Users earn 3 points for predicting the exact score of a match. For example, if a user predicts 2-2 and the live match ends 2-2, they receive 3 points.
-   - Draw Prediction: If a user predicts a draw (e.g., 0-0), and the game ends in a draw (e.g., 1-1), the user is awarded 1 point.
-   - Close Score Prediction: In cases where the predicted score is close to the actual score, 1 point is awarded. For instance, if a user predicts 2-1, and the game ends 4-0, they receive 1 point.
-   - No Points: If none of the above conditions match, no points are awarded.
+- View all current and available matches for prediction on a given day.
+- Predict scores for matches before the 12:00 pm deadline.
 
-## Tech Stack
+### Leaderboard
 
-- **Frontend**: React, CSS, Redux
-- **Backend**: Node.js, Serverless Firebase Functions
-- **Database**: MongoDB
-- **Infrastructure**: Firebase, Vercel
-- **Integration**: Rapid API
-- **Version Control**: Github
+- Displays a leaderboard showcasing users and their respective scores in descending order.
+- The user with the highest score is positioned at the top.
 
-This application is built with a modern and scalable tech stack to provide users with a seamless and enjoyable prediction experience. Feel free to explore the codebase and participate in the prediction game!
+### Live Matches
+
+- Real-time display of current match results.
+- Provides users with up-to-date information on live match scores.
+
+### Predictions
+
+- View predictions made by users for a specific day.
+- Access a comprehensive list of all predictions made in the game.
+
+## Future Plans
+
+- **Custom Sessions**: Allow different groups to create their own prediction sessions, enabling them to play different games such as the Euro Cup, South American Cup, Asian Cup, and more.
+
+The Afconade Prediction Game App is continuously evolving to provide an enhanced user experience, with plans for additional features and customization options in the future. Feel free to explore the current features and stay tuned for exciting updates!
