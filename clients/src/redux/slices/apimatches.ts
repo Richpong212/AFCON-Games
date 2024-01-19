@@ -1,4 +1,3 @@
-import { getMatches } from "./../../../../backend/functions/src/controllers/match.controller";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
