@@ -1,8 +1,0 @@
-express
-@types/express
-cors
-@types/cors
-dotenv
-@types/dotenv
-mongoose
-@types/mongoose
