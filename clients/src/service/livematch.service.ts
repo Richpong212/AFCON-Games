@@ -5,8 +5,6 @@ import {
   getMatchesSuccess,
 } from "../redux/slices/apimatches";
 
-const liveUrl = process.env.REACT_APP_LIVE_API;
-
 export const getLiveSportsData = async (dispatch: any) => {
   const options = {
     method: "GET",
