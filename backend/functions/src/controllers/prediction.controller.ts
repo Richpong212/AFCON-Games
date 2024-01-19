@@ -69,6 +69,7 @@ export const createMatchPrediction = async (req: Request, res: Response) => {
       data: savedPrediction,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       message: "Server Error",
     });
@@ -89,6 +90,7 @@ export const getAllPredictions = async (req: Request, res: Response) => {
       data: predictions,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       message: "Server Error",
     });
@@ -141,6 +143,7 @@ export const updatePrediction = async (req: Request, res: Response) => {
       data: updatedPrediction,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       message: "Server Error",
     });
@@ -170,6 +173,7 @@ export const getPredictionById = async (req: Request, res: Response) => {
       data: prediction,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       message: "Server Error",
     });
