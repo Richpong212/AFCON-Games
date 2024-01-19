@@ -1,5 +1,0 @@
-react-redux
-date-fns
-@mui/material
-react-router-dom
-react-toastify
