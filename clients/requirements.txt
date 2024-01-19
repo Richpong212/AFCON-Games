@@ -1,4 +1,3 @@
-@reduxjs/toolkit 
 react-redux
 date-fns
 @mui/material
