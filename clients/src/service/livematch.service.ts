@@ -8,25 +8,22 @@ import {
 export const getLiveSportsData = async (dispatch: any) => {
   const options = {
     method: "GET",
-    url: "https://livescore-sports.p.rapidapi.com/v1/events/live",
-    params: {
-      locale: "EN",
-      timezone: "0",
-      sport: "soccer",
-    },
+    url: "https://api-football-v1.p.rapidapi.com/v3/fixtures/events",
+    params: { fixture: "215662" },
     headers: {
-      "X-RapidAPI-Key": "b91d5df0famshfe3e8272cf33f91p19de9fjsn87a217fb0df4",
-      "X-RapidAPI-Host": "livescore-sports.p.rapidapi.com",
+      "X-RapidAPI-Key": "ca81cd05cemshbbf564bda0e4774p10030cjsn2745482b181d",
+      "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
     },
   };
 
-  dispatch(getMatchesStart());
-
   try {
     const response = await axios.request(options);
-    dispatch(getMatchesSuccess(response.data.DATA));
+    dispatch(getMatchesStart());
+
+    dispatch(getMatchesSuccess(response.data));
   } catch (error) {
     dispatch(getMatchesFailure());
+
     console.error(error);
   }
 };
