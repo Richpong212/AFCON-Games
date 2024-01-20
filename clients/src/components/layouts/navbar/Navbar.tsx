@@ -1,67 +1,182 @@
-import React from "react";
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+
+import MenuItem from "@mui/material/MenuItem";
+import SportsIcon from "@mui/icons-material/Sports";
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
-  return (
-    <div>
-      <header className="  navbar-expand-lg py-4 px-3 bg-white shadow-sm">
-        <div className="container">
-          <div className="d-flex justify-content-between align-items-center">
-            <NavLink className="text-decoration-none" to="/">
-              <h1
-                style={{
-                  fontFamily: "cursive",
-                  fontSize: "2rem",
-                }}
-                className="text-1xl font-bold text-dark"
-              >
-                AFCON
-              </h1>
-            </NavLink>
-
-            <nav>
-              <ul
-                className=" gap-3 list-unstyled mb-0 navbar-nav"
-                style={{
-                  display: "flex",
-                }}
-              >
-                <li>
-                  <NavLink className="text-dark text-decoration-none" to="/">
-                    Matches
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className="text-dark text-decoration-none "
-                    to="/leaderboard"
-                  >
-                    Leaderboard
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className="text-dark text-decoration-none "
-                    to="/matches/predictions"
-                  >
-                    Predictions
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className="text-dark text-decoration-none "
-                    to="/admin"
-                  >
-                    Admin
-                  </NavLink>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
-    </div>
+function Navbar() {
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
   );
-};
 
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  return (
+    <AppBar position="static">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <SportsIcon
+            fontSize="large"
+            sx={{
+              display: { xs: "none", md: "flex" },
+              mr: 1,
+            }}
+          />
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="#app-bar-with-responsive-menu"
+            sx={{
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            AFCONADE
+          </Typography>
+
+          <SportsIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <NavLink
+            to={"/"}
+            style={{
+              flexGrow: 1,
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            AFCONADE
+          </NavLink>
+
+          <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: "block", md: "none" },
+              }}
+            >
+              <MenuItem>
+                <NavLink
+                  style={{
+                    color: "black",
+                    display: "block",
+                    textDecoration: "none",
+                  }}
+                  to="/"
+                >
+                  Matches
+                </NavLink>
+              </MenuItem>
+              <MenuItem>
+                <NavLink
+                  style={{
+                    color: "black",
+                    display: "block",
+                    textDecoration: "none",
+                  }}
+                  to="/leaderboard"
+                >
+                  Leaderboard
+                </NavLink>
+              </MenuItem>
+              <MenuItem>
+                <NavLink
+                  style={{
+                    color: "black",
+                    display: "block",
+                    textDecoration: "none",
+                  }}
+                  to="/matches/predictions"
+                >
+                  Predictions
+                </NavLink>
+              </MenuItem>
+            </Menu>
+          </Box>
+
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
+
+          <Box className="gap-2 d-flex" sx={{ flexGrow: 0 }}>
+            <Box
+              sx={{ flexGrow: 1, display: { xs: "none", md: "flex", gap: 10 } }}
+            >
+              <NavLink
+                style={{
+                  color: "white",
+                  display: "block",
+                  textDecoration: "none",
+                }}
+                to="/"
+              >
+                Matches
+              </NavLink>
+              <NavLink
+                style={{
+                  color: "white",
+                  display: "block",
+                  textDecoration: "none",
+                }}
+                to="/leaderboard"
+              >
+                Leaderboard
+              </NavLink>
+              <NavLink
+                style={{
+                  color: "white",
+                  display: "block",
+                  textDecoration: "none",
+                }}
+                to="/matches/predictions"
+              >
+                Predictions
+              </NavLink>
+            </Box>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
+}
 export default Navbar;

@@ -5,7 +5,6 @@ import Leaderboard from "../components/pages/leaderboard/Leaderboard";
 import Admin from "../components/pages/admin/Admin";
 import Prediction from "../components/pages/prediction/Prediction";
 import Predictions from "../components/pages/allpredictions/Predictions";
-import NavBarApp from "../components/layouts/Navbar2";
 import Navbar from "../components/layouts/navbar/Navbar";
 import Standings from "../components/pages/standings/Standings";
 import UpdateMatch from "../components/pages/matchResults/UpdateMatch";
@@ -16,7 +15,7 @@ const IndexRoute = () => {
   return (
     <BrowserRouter>
       <nav>
-        <NavBarApp />
+        <Navbar />
       </nav>
 
       <Routes>
