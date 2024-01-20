@@ -51,7 +51,7 @@ const Predictions = () => {
   };
 
   return (
-    <section className="container">
+    <section className="container-fluid">
       <ToastContainer />
       <h1 className="text-3xl font-bold mb-3">Predictions</h1>
       <div className="mb-3">

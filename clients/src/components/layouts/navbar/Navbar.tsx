@@ -36,11 +36,7 @@ function Navbar() {
               mr: 1,
             }}
           />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+          <Box
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -51,8 +47,19 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            AFCONADE
-          </Typography>
+            <NavLink
+              style={{
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+              to={"/"}
+            >
+              AFCONADE
+            </NavLink>
+          </Box>
 
           <SportsIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <NavLink

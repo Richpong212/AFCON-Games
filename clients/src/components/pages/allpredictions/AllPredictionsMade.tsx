@@ -19,7 +19,7 @@ const AllPredictionsMade = () => {
   }, []);
 
   return (
-    <section className="container">
+    <section className="">
       <ToastContainer />
 
       <div className="row">
