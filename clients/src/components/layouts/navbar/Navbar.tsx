@@ -66,7 +66,7 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            AFCONADE
+            <Box sx={{ display: { xs: "flex", md: "none" } }}>AFCONADE</Box>
           </NavLink>
 
           <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
