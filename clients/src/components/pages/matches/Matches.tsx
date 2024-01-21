@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import { format, set } from "date-fns";
 import AllMatches from "./AllMatches";
 import LiveMatches from "./liveMatches";
-import AllLiveMatches from "./AllLiveMatches";
 
 const Matches = ({ btntext }: any) => {
   const [matches, setMatches]: any = useState([]);
@@ -53,10 +52,6 @@ const Matches = ({ btntext }: any) => {
     <section>
       <NavLink onClick={handleTodayMatches} to={""}>
         <span className="text-xl font-bold"> Matches</span>
-      </NavLink>
-
-      <NavLink className="mx-2" to={""} onClick={handleLiveMatches}>
-        <span className="text-xl font-bold"> Live Matches</span>
       </NavLink>
 
       {/*

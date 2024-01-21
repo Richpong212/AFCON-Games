@@ -1,29 +1,33 @@
 import axios from "axios";
-import {
-  getMatchesFailure,
-  getMatchesStart,
-  getMatchesSuccess,
-} from "../redux/slices/apimatches";
+import { getMatchesFailure } from "../redux/slices/apimatches";
+
+const baseurl = process.env.REACT_APP_MATCH_LIVE_URL;
+const rapid_api_key = process.env.REACT_APP_MATCH_HEADERKEY;
+const rapid_api_host = process.env.REACT_APP_MATCH_LIVE_HOST;
 
 export const getLiveSportsData = async (dispatch: any) => {
   const options = {
     method: "GET",
-    url: "https://api-football-v1.p.rapidapi.com/v3/fixtures/events",
+    url: `${baseurl}`,
     params: { fixture: "215662" },
     headers: {
-      "X-RapidAPI-Key": "ca81cd05cemshbbf564bda0e4774p10030cjsn2745482b181d",
-      "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+      "X-RapidAPI-Key": `${rapid_api_key}`,
+      "X-RapidAPI-Host": `${rapid_api_host}`,
     },
   };
 
   try {
     const response = await axios.request(options);
-    dispatch(getMatchesStart());
 
-    dispatch(getMatchesSuccess(response.data));
+    // save the infomation to local storage
+    const livescore: any = localStorage.setItem(
+      "livescore",
+      JSON.stringify(response.data)
+    );
+
+    return livescore;
   } catch (error) {
     dispatch(getMatchesFailure());
-
     console.error(error);
   }
 };

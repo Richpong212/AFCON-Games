@@ -3,6 +3,7 @@ import {
   createMatch,
   getMatches,
   getSingleMatch,
+  getliveMatches,
   updateMatch,
 } from "../controllers/match.controller";
 
@@ -19,5 +20,8 @@ matchRouter.get("/matches/:id", getSingleMatch);
 
 // update a match
 matchRouter.put("/matches/:id", updateMatch);
+
+// live macthces
+matchRouter.get("/matches/live/all", getliveMatches);
 
 export default matchRouter;

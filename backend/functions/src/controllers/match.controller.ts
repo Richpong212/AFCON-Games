@@ -175,3 +175,18 @@ export const updateMatch = async (req: Request, res: Response) => {
     });
   }
 };
+
+// live macthces
+export const getliveMatches = async (req: Request, res: Response) => {
+  try {
+    // get all matches with the latest match first
+
+    return res.status(200).json({
+      message: "Matches fetched successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Server Error",
+    });
+  }
+};

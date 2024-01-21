@@ -6,3 +6,5 @@ dotenv
 @types/dotenv
 mongoose
 @types/mongoose
+axios
+@types/axios
