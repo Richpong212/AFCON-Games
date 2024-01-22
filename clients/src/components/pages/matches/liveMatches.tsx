@@ -3,7 +3,6 @@ import { liveMatches } from "../../../service/match.service";
 
 const LiveMatches = () => {
   const [matches, setMatches] = useState([]);
-  console.log(matches);
 
   useEffect(() => {
     liveMatches().then((res: any) => {
