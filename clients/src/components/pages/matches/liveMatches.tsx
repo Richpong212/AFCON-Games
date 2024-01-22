@@ -3,6 +3,7 @@ import { liveMatches } from "../../../service/match.service";
 
 const LiveMatches = () => {
   const [matches, setMatches] = useState([]);
+  console.log(matches);
 
   useEffect(() => {
     liveMatches().then((res: any) => {
@@ -33,23 +34,39 @@ const LiveMatches = () => {
           >
             <div>
               <h6>{match.teams.home.name}</h6>
-              <img src="" alt="" />
+              <img
+                style={{
+                  width: "50px",
+                  height: "50px",
+                  objectFit: "contain",
+                }}
+                src={match.teams.home.logo}
+                alt=""
+              />
             </div>
             <div className="d-flex flex-column">
               <span className="mx-3">
-                {match.teams.home.score} - {match.teams.away.score}
+                {match.goals.home} - {match.goals.away}
               </span>
-              <span>
-                {match.fixture.status.short === "NS" ? (
+              <span className="mx-4">
+                {match.fixture.status.short ? (
                   <span>{match.fixture.status.elapsed}'</span>
                 ) : (
-                  <span>{match.fixture.status.short}</span>
+                  <span>{match.fixture.status.long}</span>
                 )}
               </span>
             </div>
             <div>
               <h6>{match.teams.away.name}</h6>
-              <img src="" alt="" />
+              <img
+                style={{
+                  width: "50px",
+                  height: "50px",
+                  objectFit: "contain",
+                }}
+                src={match.teams.away.logo}
+                alt=""
+              />
             </div>
           </div>
         ))
