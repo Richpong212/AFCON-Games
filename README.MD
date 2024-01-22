@@ -32,6 +32,6 @@ The Afconade Prediction Game App is continuously evolving to provide an enhanced
 
 ![Home](images/home.PNG)
 ![Predict](images/predict.PNG)
-![Predictions](images/predictionwin.PNG)
+![Predictions](images/preditionwin.PNG)
 ![Leaderboard](images/leaderboard.PNG)
 ![Live Matches](images/livematch.PNG)
