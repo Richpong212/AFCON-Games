@@ -63,3 +63,15 @@ export const updateMatch = async (id: string, match: IMatch, toast: any) => {
     return error;
   }
 };
+
+// live matches
+export const liveMatches = async () => {
+  try {
+    const res = await axios.get(`${baseUrl}/matches/live/all`);
+    // save the live matches in local storage
+    localStorage.setItem("liveScore", JSON.stringify(res.data.data));
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};

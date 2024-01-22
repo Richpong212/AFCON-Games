@@ -1,6 +1,8 @@
 import Match from "../models/match.model";
 import { Request, Response } from "express";
 import Prediction from "../models/prediction.model";
+import axios from "axios";
+import { devapp } from "../config/index.config";
 
 // create a match
 export const createMatch = async (req: Request, res: Response) => {
@@ -180,9 +182,27 @@ export const updateMatch = async (req: Request, res: Response) => {
 export const getliveMatches = async (req: Request, res: Response) => {
   try {
     // get all matches with the latest match first
+    const options = {
+      method: "GET",
+      url: `${devapp.dev.matchesapi.uri}`,
+      params: { live: "all" },
+      headers: {
+        "X-RapidAPI-Key": `${devapp.dev.matchesapi.apiKey}`,
+        "X-RapidAPI-Host": `${devapp.dev.matchesapi.apiHost}`,
+      },
+    };
+
+    const fetchMatches = await axios.request(options);
+
+    // filter through the matches to find the one with CAF
+    const matches = fetchMatches.data?.response?.filter(
+      (match: { league: { name: string } }) =>
+        match.league.name === "Africa Cup of Nations"
+    );
 
     return res.status(200).json({
       message: "Matches fetched successfully",
+      data: matches,
     });
   } catch (error) {
     return res.status(500).json({

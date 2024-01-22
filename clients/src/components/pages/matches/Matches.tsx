@@ -54,6 +54,10 @@ const Matches = ({ btntext }: any) => {
         <span className="text-xl font-bold"> Matches</span>
       </NavLink>
 
+      <NavLink className="mx-2" to={""} onClick={handleLiveMatches}>
+        <span className="text-xl font-bold"> Live Matches</span>
+      </NavLink>
+
       {/*
         <NavLink className="mx-2" to={""} onClick={handleAllMatches}>
         <span className="text-xl font-bold"> Previous Matches</span>

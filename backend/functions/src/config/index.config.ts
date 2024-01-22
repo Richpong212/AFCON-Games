@@ -8,5 +8,10 @@ export const devapp = {
     db: {
       uri: process.env.DB_URI,
     },
+    matchesapi: {
+      uri: process.env.API_URL,
+      apiKey: process.env.XRAPIDAPIKEY,
+      apiHost: process.env.XRAPIDAPIHOST,
+    },
   },
 };

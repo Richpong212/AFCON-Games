@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 // get the matches from local storage
-const matches = localStorage?.getItem("livescore")
-  ? JSON.parse(localStorage?.getItem("livescore") || "")
+const matches = localStorage?.getItem("liveScore")
+  ? JSON.parse(localStorage?.getItem("liveScore") || "")
   : [];
 
 export const apiMatchesSlice = createSlice({
