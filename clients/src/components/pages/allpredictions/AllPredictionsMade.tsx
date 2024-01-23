@@ -5,6 +5,59 @@ import { NavLink } from "react-router-dom";
 
 const AllPredictionsMade = () => {
   const [predictions, setPredictions]: any = useState([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const predictionsPerPage: number = 12;
+
+  // Get current predictions based on the current page
+  const indexOfLastPrediction: number = currentPage * predictionsPerPage;
+  const indexOfFirstPrediction: number =
+    indexOfLastPrediction - predictionsPerPage;
+  const currentPredictions: any = predictions.slice(
+    indexOfFirstPrediction,
+    indexOfLastPrediction
+  );
+
+  // Change page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  // Calculate total number of pages
+  const totalPages: any = Math.ceil(predictions.length / predictionsPerPage);
+
+  // Calculate page numbers to display
+  const pageNumbers: number[] = [];
+  const pageRangeDisplayed: number = 5; // Replace 10 with the desired value
+  if (totalPages <= pageRangeDisplayed) {
+    // If total pages are less than or equal to the page range, display all page numbers
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(i);
+    }
+  } else {
+    // If total pages are more than the page range, display a limited set of page numbers with ellipsis
+    const halfPageRange: number = Math.floor(pageRangeDisplayed / 2);
+    const startPage: number = Math.max(1, currentPage - halfPageRange);
+    const endPage: number = Math.min(totalPages, currentPage + halfPageRange);
+
+    // Display page numbers with ellipsis at the beginning
+    if (startPage > 1) {
+      pageNumbers.push(1);
+      if (startPage > 2) {
+        pageNumbers.push(-1);
+      }
+    }
+
+    // Display page numbers within the range
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i);
+    }
+
+    // Display page numbers with ellipsis at the end
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        pageNumbers.push(-1);
+      }
+      pageNumbers.push(totalPages);
+    }
+  }
 
   // current date
   const currentDate = new Date().toDateString();
@@ -23,8 +76,8 @@ const AllPredictionsMade = () => {
       <ToastContainer />
 
       <div className="row">
-        {predictions.length > 0 &&
-          predictions.map((prediction: any) => (
+        {currentPredictions.length > 0 &&
+          currentPredictions.map((prediction: any) => (
             <NavLink
               to={`/users/${prediction?.user?._id}`}
               key={prediction._id}
@@ -94,6 +147,49 @@ const AllPredictionsMade = () => {
             </NavLink>
           ))}
       </div>
+
+      {/* Pagination */}
+      <nav className="d-flex justify-content-center mt-4">
+        <ul className="pagination">
+          <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+            <button
+              className="page-link"
+              onClick={() => setCurrentPage((prev) => prev - 1)}
+            >
+              &lt;
+            </button>
+          </li>
+          {pageNumbers.map((pageNumber: number, index: number) => (
+            <li
+              key={index}
+              className={`page-item ${pageNumber === -1 ? "disabled" : ""} ${
+                currentPage === pageNumber ? "active" : ""
+              }`}
+            >
+              <button
+                className="page-link"
+                onClick={() =>
+                  pageNumber !== -1 ? paginate(pageNumber) : null
+                }
+              >
+                {pageNumber !== -1 ? pageNumber : "..."}
+              </button>
+            </li>
+          ))}
+          <li
+            className={`page-item ${
+              currentPage === totalPages ? "disabled" : ""
+            }`}
+          >
+            <button
+              className="page-link"
+              onClick={() => setCurrentPage((prev) => prev + 1)}
+            >
+              &gt;
+            </button>
+          </li>
+        </ul>
+      </nav>
     </section>
   );
 };
