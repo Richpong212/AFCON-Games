@@ -11,6 +11,12 @@ const Predictions = () => {
   // current date
   const currentDate = new Date();
 
+  // time to display the predictions
+  const predictionTimeLimit = "12:00:00";
+
+  //current time to display
+  const currentTime = new Date().toLocaleTimeString();
+
   // filter and sort predictions based on today's date
   const sortedPredictions = predictions
     .filter((prediction: any) => {
@@ -66,6 +72,7 @@ const Predictions = () => {
       {today && (
         <div className="row">
           {sortedPredictions.length > 0 &&
+            currentTime >= predictionTimeLimit &&
             sortedPredictions.map((prediction: any) => (
               <div key={prediction._id} className="col-md-6 mb-3 ">
                 <NavLink
