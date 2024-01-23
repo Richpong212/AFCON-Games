@@ -69,6 +69,18 @@ const Predictions = () => {
         </button>
       </div>
 
+      {
+        // if there are no predictions
+        currentTime < predictionTimeLimit && (
+          <div className="alert alert-warning">
+            <h2 className="text-xl font-bold">All Predictions are protected</h2>
+            <p className="text-gray-600">
+              Predictions will be displayed here at/after 12:00:00
+            </p>
+          </div>
+        )
+      }
+
       {today && (
         <div className="row">
           {sortedPredictions.length > 0 &&

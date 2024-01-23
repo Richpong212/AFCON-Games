@@ -8,6 +8,12 @@ const AllPredictionsMade = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const predictionsPerPage: number = 12;
 
+  // time to display the predictions
+  const predictionTimeLimit = "12:00:00";
+
+  //current time to display
+  const currentTime = new Date().toLocaleTimeString();
+
   // Get current predictions based on the current page
   const indexOfLastPrediction: number = currentPage * predictionsPerPage;
   const indexOfFirstPrediction: number =
@@ -76,7 +82,22 @@ const AllPredictionsMade = () => {
       <ToastContainer />
 
       <div className="row">
+        {
+          // if there are no predictions
+          currentTime < predictionTimeLimit && (
+            <div className="alert alert-warning">
+              <h2 className="text-xl font-bold">
+                All Predictions are protected
+              </h2>
+              <p className="text-gray-600">
+                Predictions will be displayed here at/after 12:00:00
+              </p>
+            </div>
+          )
+        }
+
         {currentPredictions.length > 0 &&
+          currentTime >= predictionTimeLimit &&
           currentPredictions.map((prediction: any) => (
             <NavLink
               to={`/users/${prediction?.user?._id}`}
@@ -149,47 +170,49 @@ const AllPredictionsMade = () => {
       </div>
 
       {/* Pagination */}
-      <nav className="d-flex justify-content-center mt-4">
-        <ul className="pagination">
-          <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-            <button
-              className="page-link"
-              onClick={() => setCurrentPage((prev) => prev - 1)}
-            >
-              &lt;
-            </button>
-          </li>
-          {pageNumbers.map((pageNumber: number, index: number) => (
+      {currentTime >= predictionTimeLimit && (
+        <nav className="d-flex justify-content-center mt-4">
+          <ul className="pagination">
+            <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+              <button
+                className="page-link"
+                onClick={() => setCurrentPage((prev) => prev - 1)}
+              >
+                &lt;
+              </button>
+            </li>
+            {pageNumbers.map((pageNumber: number, index: number) => (
+              <li
+                key={index}
+                className={`page-item ${pageNumber === -1 ? "disabled" : ""} ${
+                  currentPage === pageNumber ? "active" : ""
+                }`}
+              >
+                <button
+                  className="page-link"
+                  onClick={() =>
+                    pageNumber !== -1 ? paginate(pageNumber) : null
+                  }
+                >
+                  {pageNumber !== -1 ? pageNumber : "..."}
+                </button>
+              </li>
+            ))}
             <li
-              key={index}
-              className={`page-item ${pageNumber === -1 ? "disabled" : ""} ${
-                currentPage === pageNumber ? "active" : ""
+              className={`page-item ${
+                currentPage === totalPages ? "disabled" : ""
               }`}
             >
               <button
                 className="page-link"
-                onClick={() =>
-                  pageNumber !== -1 ? paginate(pageNumber) : null
-                }
+                onClick={() => setCurrentPage((prev) => prev + 1)}
               >
-                {pageNumber !== -1 ? pageNumber : "..."}
+                &gt;
               </button>
             </li>
-          ))}
-          <li
-            className={`page-item ${
-              currentPage === totalPages ? "disabled" : ""
-            }`}
-          >
-            <button
-              className="page-link"
-              onClick={() => setCurrentPage((prev) => prev + 1)}
-            >
-              &gt;
-            </button>
-          </li>
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      )}
     </section>
   );
 };
