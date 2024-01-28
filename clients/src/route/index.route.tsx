@@ -10,6 +10,7 @@ import Standings from "../components/pages/standings/Standings";
 import UpdateMatch from "../components/pages/matchResults/UpdateMatch";
 import SingleUser from "../components/pages/singleUser/SingleUser";
 import EditPredictions from "../components/pages/allpredictions/EditPredictions";
+import GameRules from "../components/pages/gameRules/GameRules";
 
 const IndexRoute = () => {
   return (
@@ -26,7 +27,7 @@ const IndexRoute = () => {
         <Route path="/matches/update/:matchid" element={<UpdateMatch />} />
         <Route path="/users/:id" element={<SingleUser />} />
         <Route path="/matches/predictions" element={<Predictions />} />
-        <Route path="/standings" element={<Standings />} />
+        <Route path="/game-rules" element={<GameRules />} />
         <Route
           path="/predictions/edit/:matchid"
           element={<EditPredictions />}

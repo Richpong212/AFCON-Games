@@ -140,6 +140,18 @@ function Navbar() {
                   Predictions
                 </NavLink>
               </MenuItem>
+              <MenuItem>
+                <NavLink
+                  style={{
+                    color: "black",
+                    display: "block",
+                    textDecoration: "none",
+                  }}
+                  to="/game-rules"
+                >
+                  Game Rule
+                </NavLink>
+              </MenuItem>
             </Menu>
           </Box>
 
@@ -178,6 +190,16 @@ function Navbar() {
                 to="/matches/predictions"
               >
                 Predictions
+              </NavLink>
+              <NavLink
+                style={{
+                  color: "white",
+                  display: "block",
+                  textDecoration: "none",
+                }}
+                to="/game-rules"
+              >
+                Game Rules
               </NavLink>
             </Box>
           </Box>
