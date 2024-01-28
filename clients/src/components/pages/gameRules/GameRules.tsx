@@ -14,7 +14,6 @@ const GameRules = () => {
         <h1 className="text-2xl font-bold">Game Rules</h1>
       </header>
       <section className="w-100 mt-4">
-        <h2 className="text-xl font-semibold">Basic Rules</h2>
         <div className="w-100 mt-4">
           <div className="bg-light p-4 rounded mb-4">
             <h5 className="font-weight-medium h5">1. Betting Deadline</h5>
