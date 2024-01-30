@@ -158,6 +158,18 @@ function Navbar() {
                     display: "block",
                     textDecoration: "none",
                   }}
+                  to="/groups"
+                >
+                  Groups
+                </NavLink>
+              </MenuItem>
+              <MenuItem>
+                <NavLink
+                  style={{
+                    color: "black",
+                    display: "block",
+                    textDecoration: "none",
+                  }}
                   to="/game-rules"
                 >
                   Game Rule
@@ -201,6 +213,16 @@ function Navbar() {
                 to="/leaderboard"
               >
                 Leaderboard
+              </NavLink>
+              <NavLink
+                style={{
+                  color: "white",
+                  display: "block",
+                  textDecoration: "none",
+                }}
+                to="/groups"
+              >
+                Groups
               </NavLink>
               <NavLink
                 style={{

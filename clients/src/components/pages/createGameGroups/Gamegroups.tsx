@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { createUserGroup } from "../../../service/userGroup.service";
 import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 const Gamegroups = () => {
   const [groupData, setGroupData] = useState({
@@ -91,9 +91,11 @@ const Gamegroups = () => {
           </button>
         </form>
       </section>
-      <button type="button" className="btn btn-secondary mt-4">
-        Back to Matches
-      </button>
+      <NavLink to="/">
+        <button type="button" className="btn btn-secondary mt-4">
+          Back to Matches
+        </button>
+      </NavLink>
     </main>
   );
 };

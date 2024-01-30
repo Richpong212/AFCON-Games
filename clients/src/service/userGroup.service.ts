@@ -30,3 +30,13 @@ export const createUserGroup = async (
     return error;
   }
 };
+
+// get all userGroups
+export const getUserGroups = async () => {
+  try {
+    const res = await axios.get(`${baseUrl}/user-groups`);
+    return res.data;
+  } catch (error: any) {
+    return error;
+  }
+};
