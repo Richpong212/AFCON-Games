@@ -3,7 +3,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
@@ -123,6 +122,18 @@ function Navbar() {
                     display: "block",
                     textDecoration: "none",
                   }}
+                  to="/create-group"
+                >
+                  Create a Group
+                </NavLink>
+              </MenuItem>
+              <MenuItem>
+                <NavLink
+                  style={{
+                    color: "black",
+                    display: "block",
+                    textDecoration: "none",
+                  }}
                   to="/leaderboard"
                 >
                   Leaderboard
@@ -161,6 +172,16 @@ function Navbar() {
             <Box
               sx={{ flexGrow: 1, display: { xs: "none", md: "flex", gap: 10 } }}
             >
+              <NavLink
+                style={{
+                  color: "white",
+                  display: "block",
+                  textDecoration: "none",
+                }}
+                to="/create-group"
+              >
+                Create a Group
+              </NavLink>
               <NavLink
                 style={{
                   color: "white",

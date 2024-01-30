@@ -6,6 +6,7 @@ import morgan from "morgan";
 import userRouter from "./routes/user.routes";
 import matchRouter from "./routes/match.routes";
 import predictionRouter from "./routes/prediction.routes";
+import userGroupRouter from "./routes/userGroup.route";
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.get("/", (req: express.Request, res: express.Response) => {
 app.use("/api/v1", userRouter); // user routes
 app.use("/api/v1", matchRouter); // match routes
 app.use("/api/v1", predictionRouter); // prediction routes
+app.use("/api/v1", userGroupRouter); // user groups routes
 
 // connect the database
 connectDB();
