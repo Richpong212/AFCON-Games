@@ -12,6 +12,7 @@ import EditPredictions from "../components/pages/allpredictions/EditPredictions"
 import GameRules from "../components/pages/gameRules/GameRules";
 import Gamegroups from "../components/pages/createGameGroups/Gamegroups";
 import Groups from "../components/pages/gameGroups/Groups";
+import AddMember from "../components/pages/gameGroups/AddMember";
 
 const IndexRoute = () => {
   return (
@@ -25,6 +26,7 @@ const IndexRoute = () => {
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/create-group" element={<Gamegroups />} />
         <Route path="/groups" element={<Groups />} />
+        <Route path="/group/add-member" element={<AddMember />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/matches/prediction/:matchid" element={<Prediction />} />
         <Route path="/matches/update/:matchid" element={<UpdateMatch />} />

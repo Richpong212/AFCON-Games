@@ -55,3 +55,52 @@ export const getAllUserGroups = async (req: Request, res: Response) => {
     });
   }
 };
+
+// add a member to a userGroup
+export const addGroupMember = async (req: Request, res: Response) => {
+  try {
+    const { name } = req.body;
+    const { groupid } = req.params;
+
+    // check if the userGroup exists
+    const existingUserGroup = await UserGroup.findOne({ _id: groupid });
+
+    if (!existingUserGroup) {
+      return res.status(404).json({
+        message: "User Group not found",
+      });
+    }
+
+    // check if name is provided
+    if (!name) {
+      return res.status(400).json({
+        message: "name is required",
+      });
+    }
+
+    // check if the member exists
+    const existingMember = await UserGroup.findOne({ name });
+    if (existingMember) {
+      return res.status(404).json({
+        message: "Member already exists",
+      });
+    }
+
+    // add the member to the userGroup
+    const updatedUserGroup = await UserGroup.findByIdAndUpdate(
+      groupid,
+      { $push: { members: name } },
+      { new: true }
+    );
+
+    return res.status(200).json({
+      message: "UserGroups retrieved successfully",
+      data: updatedUserGroup,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Server Error",
+    });
+  }
+};

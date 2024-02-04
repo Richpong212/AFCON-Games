@@ -40,3 +40,26 @@ export const getUserGroups = async () => {
     return error;
   }
 };
+
+// add a member to a userGroup
+export const addUserGroupMember = async (
+  userGroupId: string,
+  name: string,
+  toast: any
+) => {
+  try {
+    const res = await axios.post(
+      `${baseUrl}/user-groups/${userGroupId}/add-member`,
+      name
+    );
+    toast("User added successfully", {
+      type: "success",
+    });
+    return res.data;
+  } catch (error: any) {
+    toast(error.response.data.message, {
+      type: "error",
+    });
+    return error;
+  }
+};
